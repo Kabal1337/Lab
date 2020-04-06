@@ -1,0 +1,5 @@
+﻿  ConsoleApplication2.cpp
+C:\Users\Борис\source\repos\ConsoleApplication2\ConsoleApplication2\ConsoleApplication2.cpp(24,21): warning C4018:  <: несоответствие типов со знаком и без знака
+C:\Users\Борис\source\repos\ConsoleApplication2\ConsoleApplication2\ConsoleApplication2.cpp(33,21): warning C4018:  <: несоответствие типов со знаком и без знака
+C:\Users\Борис\source\repos\ConsoleApplication2\ConsoleApplication2\ConsoleApplication2.cpp(12,12): warning C4101:  fi: неиспользованная локальная переменная
+  ConsoleApplication2.vcxproj -> C:\Users\Борис\source\repos\ConsoleApplication2\Debug\ConsoleApplication2.exe

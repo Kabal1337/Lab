@@ -7,27 +7,33 @@
 char* readln();
 int main()
 {
+	char* stringus;
 	char* a;
-	do 
-	{
-		char* stringus;
+	while (true)
+	{	
+		
 		a = readln();
+		if (a == NULL) break;
 		//printf(a);
 		//printf("%c", a[0]);
 		int dlin= strlen(a);
-		int len=0;
-		stringus = (char*)malloc(2*dlin *sizeof(char));
+		
+		stringus = (char*)malloc(2*dlin *sizeof(char*));
 		//printf("%d", dlin);
 		int j = 0;
 		for (int i = 0; i < dlin-1; i++) {
-			if (a[i] = a[i + 1]) 
+			if (a[i] == a[i + 1]) 
 			{
 				
 				stringus[j] = a[i];
 				j++;  
-				
+				if (i == dlin - 2) {
+					stringus[j] = a[i + 1];
+					j++;
+				}
+			
 			}
-			if ((a[i] != a[i + 1]) && (a[i] = a[i-1])) {
+			if ((a[i] != a[i + 1]) && (a[i] == a[i-1])) {
 				stringus[j] = a[i];
 				stringus[j + 1] = ' ';
 				j += 2;
@@ -38,31 +44,35 @@ int main()
 		stringus[j] = '\0';
 		
 		printf(stringus);
+		printf("\n");
+		free(stringus);
+		free(a);
 	} 
-	while (a != NULL);
+	
+	return 0;
 }
 
 
 
-char* readln() {
-	char* ptr = (char*)malloc(1);
-	*ptr = '\0';
-	char buf[81];
+char* readln(void) {
+	char* ptr = (char*)malloc(1 * sizeof(char*));
+	*ptr = NULL;
+	char buf[20];
 	int n, len = 0;
 	do {
-		n = scanf("%80[^\n]", buf);
-		if (n < 0) {
-			free(ptr);
-			ptr = NULL;
-			continue;
-		}
+		n = scanf("%19[^\n]", buf);
+
 		if (n == 0)
 			scanf("%*c");
-		else {
-			len += strlen(buf);
-			ptr = (char*)realloc(ptr, len + 1);
+		else
+		{
+			len = len + strlen(buf) + 1;
+			ptr = (char*)realloc(ptr, len);
 			strcat(ptr, buf);
 		}
+
 	} while (n > 0);
+	if (ptr[0] == '\0') ptr = NULL;
 	return ptr;
 }
+
