@@ -25,7 +25,7 @@ int main()
 	for (i = 0; i < n; i++)  // цикл по строкам
 	{
 		printf("Введите количество столбцов: ");
-		char answer[256];
+		
 		fgets(answer, sizeof(answer), stdin);
 		while (sscanf(answer, "%d", &m) != 1) {
 			printf("Некоректный ввод, введите еще раз: "); // выводим сообщение об ошибке
@@ -39,7 +39,7 @@ int main()
 		{
 			printf("a[%d][%d] = ", i, j);
 
-			char answer[256];
+			
 			fgets(answer, sizeof(answer), stdin);
 			while (sscanf(answer, "%d", &a[i][j]) != 1) {
 				printf("Некоректный ввод, введите еще раз: "); // выводим сообщение об ошибке

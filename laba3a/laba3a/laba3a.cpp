@@ -22,18 +22,18 @@ int main()
 		//printf("%d", dlin);
 		int j = 0;
 		for (int i = 0; i < dlin-1; i++) {
-			if (a[i] == a[i + 1]) 
+			if ((a[i] == a[i + 1]) && (a[i] != ' ')) 
 			{
 				
 				stringus[j] = a[i];
 				j++;  
-				if (i == dlin - 2) {
+				if ((i == dlin - 2) && (a[i+1] != ' ')) {
 					stringus[j] = a[i + 1];
 					j++;
 				}
 			
 			}
-			if ((a[i] != a[i + 1]) && (a[i] == a[i-1])) {
+			if ((a[i] != a[i + 1]) && (a[i] == a[i-1]) && (a[i] != ' ')) {
 				stringus[j] = a[i];
 				stringus[j + 1] = ' ';
 				j += 2;
