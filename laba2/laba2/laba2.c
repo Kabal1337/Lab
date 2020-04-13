@@ -3,6 +3,7 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <ctype.h>
+//int clean_stdin(c);
 int main()
 {   
     int** a;  // указатель на указатель на строку элементов
@@ -12,10 +13,10 @@ int main()
     system("cls");
     printf("Введите количество строк: ");
 	char answer[256];
-	fgets(answer, sizeof(answer), stdin);
-	while ((sscanf(answer, "%d", &n) != 1)) {
-		printf("Некоректный ввод, введите еще раз: "); // выводим сообщение об ошибке
-		fgets(answer, sizeof(answer), stdin); // и заново считываем строку
+	
+	while ((scanf("%d", &n) != 1)||(n==0)) {
+		printf("Некоректный ввод, введите еще раз: ");
+		getchar();
 	}
 	// printf("Введите количество столбцов: ");
     
@@ -28,10 +29,9 @@ int main()
 	{
 		printf("Введите количество столбцов: ");
 
-		fgets(answer, sizeof(answer), stdin);
-		while ((sscanf(answer, "%d", &m) != 1)||(m<=0)) {
-			printf("Некоректный ввод, введите еще раз: "); // выводим сообщение об ошибке
-			fgets(answer, sizeof(answer), stdin); // и заново считываем строку
+		while ((scanf("%d", &m) != 1)||(m==0)) {
+			printf("Некоректный ввод, введите еще раз: ");
+			getchar();
 		}
 		f[i] = m;
 		
@@ -43,10 +43,9 @@ int main()
 				printf("a[%d][%d] = ", i, j);
 
 
-				fgets(answer, sizeof(answer), stdin);
-				while (sscanf(answer, "%d", &a[i][j]) != 1) {
-					printf("Некоректный ввод, введите еще раз: "); // выводим сообщение об ошибке
-					fgets(answer, sizeof(answer), stdin); // и заново считываем строку
+				while ((scanf("%d", &a[i][j]) != 1)) {
+					printf("Некоректный ввод, введите еще раз: ");
+					getchar();
 				}
 			}
 		
