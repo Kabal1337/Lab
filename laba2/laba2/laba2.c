@@ -12,7 +12,7 @@ int main()
 	system("chcp 1251");
     system("cls");
     printf("Введите количество строк: ");
-	char answer[256];
+	
 	
 	while ((scanf("%d", &n) != 1)||(n==0)) {
 		printf("Некоректный ввод, введите еще раз: ");
@@ -116,11 +116,18 @@ int main()
 			}
         }
     }
+	for (int i = 0; i < n; i++) {
+		free(a[i]);
+	}
+	free(f);
+	free(a);
+
 	printf("Итоговый вектор b: ");
 	for (int i = 0; i < n; i++) {
 		
 		printf("%d", b[i]);
         printf("%c", ' ');
     }
-        return 0;
+	free(b);
+	return 0;
 }

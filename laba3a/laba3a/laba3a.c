@@ -1,4 +1,4 @@
-﻿// laba3a.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
@@ -7,48 +7,51 @@
 char* readln();
 int main()
 {
+	char sym[3] = { '\t', ' ', '\0' };
 	char* stringus;
 	char* a;
+	
 	while (1)
-	{	
+	{
 		
 		a = readln();
 		if (a == NULL) break;
 		//printf(a);
 		//printf("%c", a[0]);
-		int dlin= strlen(a);
-		
-		stringus = (char*)malloc(2*dlin *sizeof(char*));
+		int dlin = strlen(a);
+		stringus = (char*)malloc(2*dlin * sizeof(char*));
+		stringus[0] = '\0';
 		//printf("%d", dlin);
-		int j = 0;
-		for (int i = 0; i < dlin-1; i++) {
-			if ((a[i] == a[i + 1]) && (a[i] != ' ')) 
-			{
-				
-				stringus[j] = a[i];
-				j++;  
-				if ((i == dlin - 2) && (a[i+1] != ' ')) {
-					stringus[j] = a[i + 1];
-					j++;
+		//int len = strspn(&a[0], sym);
+		for (int i = 0; i < dlin - 1; i++) {
+			int len = strspn(&a[i], sym);
+			if (len == 0) {
+				if ((i != dlin - 1) && (a[i] == a[i + 1])) {
+					
+						strncat(stringus, &a[i], 1);
+						if (a[i+1] != a[i + 2]) {
+							strncat(stringus, &a[i+1], 1);
+							strcat(stringus, " ");
+						}
+
+
+					
+					
 				}
+			}
 			
-			}
-			if ((a[i] != a[i + 1]) && (a[i] == a[i-1]) && (a[i] != ' ')) {
-				stringus[j] = a[i];
-				stringus[j + 1] = ' ';
-				j += 2;
-			}
+			
 		}
 		
-		
-		stringus[j] = '\0';
-		
+		//stringus[strlen(stringus)] = '\0';
+		//printf('"');
 		printf(stringus);
+		printf("%c",'!');
 		printf("\n");
 		free(stringus);
 		free(a);
-	} 
-	
+	}
+
 	return 0;
 }
 
@@ -75,4 +78,3 @@ char* readln(void) {
 	if (ptr[0] == '\0') ptr = NULL;
 	return ptr;
 }
-

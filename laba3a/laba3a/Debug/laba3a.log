@@ -1,2 +1,4 @@
-﻿  laba3a.cpp
+﻿  laba3a.c
+C:\Users\Борис\source\repos\laba3a\laba3a\laba3a.c(47,27): warning C4047:  ==: "int" отличается по уровням косвенного обращения от "char [2]"
+C:\Users\Борис\source\repos\laba3a\laba3a\laba3a.c(65,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
   laba3a.vcxproj -> C:\Users\Борис\source\repos\laba3a\Debug\laba3a.exe
