@@ -26,7 +26,7 @@ int main()
 		for (int i = 0; i < dlin - 1; i++) {
 			int len = strspn(&a[i], sym);
 			if (len == 0) {
-				if ((i != dlin - 1) && (a[i] == a[i + 1])) {
+				if ((i != dlin - 1) && (*(a+i) == *(a+i+1))) {
 					
 						strncat(stringus, &a[i], 1);
 						if (a[i+1] != a[i + 2]) {
