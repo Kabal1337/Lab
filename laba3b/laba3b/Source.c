@@ -131,7 +131,7 @@ void free_list(Node* ptr)
 
 void algor(Node* ptr) {
 	Node* cur_ptr = ptr;
-
+	int chis;
 		while (cur_ptr->next_ptr != NULL)  {
 			
 				if ((cur_ptr->next_ptr->data != ' ') && (cur_ptr->next_ptr->data != '\t')) { 
@@ -144,8 +144,8 @@ void algor(Node* ptr) {
 
 		}
 		if (cur_ptr->data == ' ') cur_ptr = delone(ptr, cur_ptr);
-			
-			
+		
+		
 		
 }
 	
@@ -158,25 +158,20 @@ void algor(Node* ptr) {
 		 cur_ptr = cur_ptr->next_ptr;
 		//cur_ptr = cur_ptr->next_ptr;
 		while (1) {
-			if ((cur_ptr->data == ' ') || (cur_ptr->next_ptr == NULL)) break;
+			//if ((cur_ptr->data == ' ') || (cur_ptr->next_ptr == NULL)) break;
 			chis = cur_ptr->data;
-			if (chis% 2 != 0) {
+			if (chis% 2 != 0) 
+			{
 				cur_ptr = first;
 				cur_ptr=del(cur_ptr);
 				break;
 			
 			}
+			if ((cur_ptr->data == ' ') || (cur_ptr->next_ptr == NULL)) break;
 			else cur_ptr = cur_ptr->next_ptr;
+			
 		}
-		if (cur_ptr->next_ptr == NULL) {
-			chis = cur_ptr->data;
-			if (chis % 2 != 0) {
-				cur_ptr = first;
-				cur_ptr = del(cur_ptr);
-				
-
-			}
-		}
+		
 		return cur_ptr;
 	}
 	
@@ -233,7 +228,10 @@ void algor(Node* ptr) {
 
 		}
 		if (cur_ptr->data == ' ') cur_ptr = delone(ptr, cur_ptr);
-	
-	
+		cur_ptr = ptr;
+		while (cur_ptr->next_ptr!= NULL) {
+			cur_ptr = cur_ptr->next_ptr;
+		}
+		if (cur_ptr->data == ' ') cur_ptr = delone(ptr, cur_ptr);
 	
 	}
