@@ -1,11 +1,1 @@
-﻿  Source.c
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(64,8): warning C4101:  t_table: неиспользованная локальная переменная
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(60,6): warning C4101:  release: неиспользованная локальная переменная
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(129,19): warning C4101:  prev_ptr: неиспользованная локальная переменная
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(170,11): warning C4033:  "table_find_key" должен возвращать значение
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(206,24): warning C4047:  =: "int" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(295,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(305,22): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(307,10): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(307,10): warning C4013: C:\Users\Борис\source\repos\laba4a\laba4a\Source.c(177) : warning C4716: table_find_key: должна возвращать значение
-  laba4a.vcxproj -> C:\Users\Борис\source\repos\laba4a\x64\Debug\laba4a.exe
+﻿  laba4a.vcxproj -> C:\Users\Борис\source\repos\laba4a\x64\Debug\laba4a.exe

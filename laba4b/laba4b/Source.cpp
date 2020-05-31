@@ -93,22 +93,22 @@ int main()
 			break;
 		case 3:
 			key = get_key();
-			
 
-			
-			
-				table_delete_key(table, key);
-			
-	
+
+
+
+			table_delete_key(table, key);
+
+
 
 			printf("\n");
 			break;
-			case 4:
+		case 4:
 			key = get_key();
-			 table_find_key(table, key);
+			table_find_key(table, key);
 			//table_read(t_table);
 			//table_clear(t_table);
-			
+
 
 			printf("\n");
 			break;
@@ -132,9 +132,9 @@ void table_clear(Table* table)
 	{
 		cur_ptr = &table->arr[i];
 		if (cur_ptr->busy == 1) {
-			if(cur_ptr->info!=NULL)
-			free(cur_ptr->info);
-			
+			if (cur_ptr->info != NULL)
+				free(cur_ptr->info);
+
 		}
 	}
 
@@ -146,9 +146,9 @@ void table_clear(Table* table)
 
 Table* table_find_key(Table* table, int key)
 {
-	
 
-	
+
+
 
 	int index;
 	Item* cur_ptr;
@@ -158,8 +158,8 @@ Table* table_find_key(Table* table, int key)
 		if (cur_ptr->busy == 1) {
 			if (cur_ptr->key == key)
 			{
-				Item* cur_ptr1=(Item*)malloc(sizeof(Item));
-				
+				Item* cur_ptr1 = (Item*)malloc(sizeof(Item));
+
 				cur_ptr1->info = cur_ptr->info;
 				cur_ptr1->key = cur_ptr->key;
 				printf("Key: %d ", cur_ptr1->key);
@@ -168,7 +168,7 @@ Table* table_find_key(Table* table, int key)
 				printf("\n");
 				free(cur_ptr1);
 				return;
-				
+
 			}
 		}
 
@@ -208,10 +208,10 @@ void table_delete_key(Table* table, int key)
 				return;
 			}
 		}
-		
+
 	}
 	printf("Invalid key");
-	
+
 }
 
 
@@ -222,12 +222,12 @@ void table_read(Table* table)
 	for (int i = 0; i < table->size; i++)
 	{
 		cur_ptr = &table->arr[i];
-		
+
 		if (cur_ptr->busy == 1) {
 			printf("Key: %d ", cur_ptr->key);
 			printf("Info: ");
-			if (cur_ptr->info!=NULL)
-			printf(cur_ptr->info);
+			if (cur_ptr->info != NULL)
+				printf(cur_ptr->info);
 			printf("\n");
 		}
 
@@ -235,22 +235,22 @@ void table_read(Table* table)
 }
 
 void table_add(Table* table, int key, char* info)
-{	
+{
 	int index;
 	Item* cur_ptr;
 	for (int i = 0; i < 11; i++) {
-		index = (h1(key)+i*h2(key))%11;
-		 cur_ptr = &table->arr[index];
-		 if (cur_ptr->busy == 0) {
-			 cur_ptr->key = key;
-			 cur_ptr->info = info;
-			 cur_ptr->busy = 1;
-			 return;
-		 }
-		 else if (cur_ptr->key == key) {
-			 printf("Invalid Key");
-			 return;
-		 }
+		index = (h1(key) + i * h2(key)) % 11;
+		cur_ptr = &table->arr[index];
+		if (cur_ptr->busy == 0) {
+			cur_ptr->key = key;
+			cur_ptr->info = info;
+			cur_ptr->busy = 1;
+			return;
+		}
+		else if (cur_ptr->key == key) {
+			printf("Invalid Key");
+			return;
+		}
 	}
 	printf("TableOFF");
 }
@@ -264,7 +264,7 @@ Table* table_new(int size)
 
 	for (int i = 0; i < size; i++)
 	{
-		
+
 		ptr->arr[i].busy = 0;
 	}
 
@@ -302,7 +302,7 @@ char* readln(void) {
 			scanf("%*c");
 		else
 		{
-			len = len + strlen(buf) + 1; 
+			len = len + strlen(buf) + 1;
 			ptr = (char*)realloc(ptr, len);
 			strcat(ptr, buf);
 		}
@@ -315,7 +315,7 @@ char* readln(void) {
 int h1(int key) {
 	return (key % 11);
 }
-int h2(int key){
+int h2(int key) {
 	return (key % 9 + 1);
 
 
