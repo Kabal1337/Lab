@@ -1,0 +1,6 @@
+﻿  Source.c
+C:\Users\Борис\source\repos\laba5\laba5\Source.c(503,16): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
+C:\Users\Борис\source\repos\laba5\laba5\Source.c(513,31): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Борис\source\repos\laba5\laba5\Source.c(515,19): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Борис\source\repos\laba5\laba5\Source.c(530,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
+  laba5.vcxproj -> C:\Users\Борис\source\repos\laba5\Debug\laba5.exe

@@ -1,12 +1,12 @@
 ﻿  Source.c
 C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(70,8): warning C4101:  t_table: неиспользованная локальная переменная
 C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(66,6): warning C4101:  release: неиспользованная локальная переменная
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(160,19): warning C4101:  prev_ptr: неиспользованная локальная переменная
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(201,11): warning C4033:  "table_find_key" должен возвращать значение
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(237,24): warning C4047:  =: "int" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(326,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(336,22): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(338,10): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(358,8): warning C4101:  cur_ptr: неиспользованная локальная переменная
-C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(358,8): warning C4101: C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(208) : warning C4716: table_find_key: должна возвращать значение
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(161,19): warning C4101:  prev_ptr: неиспользованная локальная переменная
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(202,11): warning C4033:  "table_find_key" должен возвращать значение
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(238,24): warning C4047:  =: "int" отличается по уровням косвенного обращения от "void *"
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(327,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(337,22): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(339,10): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(359,8): warning C4101:  cur_ptr: неиспользованная локальная переменная
+C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(359,8): warning C4101: C:\Users\Борис\source\repos\laba4b\laba4b\Source.c(209) : warning C4716: table_find_key: должна возвращать значение
   laba4b.vcxproj -> C:\Users\Борис\source\repos\laba4b\Debug\laba4b.exe

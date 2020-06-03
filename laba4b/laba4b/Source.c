@@ -108,6 +108,7 @@ int main()
 		{ 
 		case 1:
 			key = get_key();
+			printf("Type info: ");
 			info = readln();
 			table_add(table, key, info);
 			f_add(file, key, info);
@@ -320,7 +321,7 @@ int get_key()
 }
 
 char* readln(void) {
-	printf("Type info: ");
+	//printf("Type info: ");
 
 	char* ptr = (char*)malloc(1 * sizeof(char*));
 	*ptr = NULL;
@@ -371,8 +372,12 @@ void f_add(FILE* file, int key, char* info)
 		//Заполнение item`а
 		f_item = (f_Item*)malloc(sizeof(f_Item));
 		f_item->key = key;
+		if(info!=NULL)
 		f_item->info_size = strlen(info);
-		
+		else {
+			info = "";
+			f_item->info_size = strlen(info);
+		}
 		fwrite(f_item, sizeof(f_Item), 1, file); //записываю Item в файл
 		fwrite(info, sizeof(char), f_item->info_size, file); //записываю строку в файл
 		if (f_arr[index] == 0) {
