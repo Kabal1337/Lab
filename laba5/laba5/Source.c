@@ -125,14 +125,15 @@ int main()
 			{
 				tree_draw(tree->Head, 0);
 				printf("\n");
+			
 			}
+			break;
 		case 7:
 			if (tree->Head != NULL)
 			{
 				tree_free(tree->Head);
 			}
 			free(tree);
-
 			return 0;
 		default:
 			printf("There is no such command \n\n");
