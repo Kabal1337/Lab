@@ -1,7 +1,4 @@
 ﻿  Source.c
-C:\Users\Борис\source\repos\laba6\laba6\Source.c(102,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba6\laba6\Source.c(112,22): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba6\laba6\Source.c(114,10): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba6\laba6\Source.c(131,39): warning C4047:  =: "int" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba6\laba6\Source.c(148,25): warning C4047:  =: "int" отличается по уровням косвенного обращения от "void *"
+C:\Users\Борис\source\repos\laba6\laba6\Source.c(180,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
+C:\Users\Борис\source\repos\laba6\laba6\Source.c(685,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
   laba6.vcxproj -> C:\Users\Борис\source\repos\laba6\Debug\laba6.exe

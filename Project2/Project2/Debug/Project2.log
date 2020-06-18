@@ -1,0 +1,5 @@
+﻿  Source.c
+C:\Users\Борис\source\repos\Project2\Project2\Source.c(266,28): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\Борис\source\repos\Project2\Project2\Source.c(520,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
+C:\Users\Борис\source\repos\Project2\Project2\Source.c(532,10): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
+  Project2.vcxproj -> C:\Users\Борис\source\repos\Project2\Debug\Project2.exe

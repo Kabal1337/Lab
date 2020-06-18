@@ -41,16 +41,16 @@ Table* table_new(int size);
 Table* table_find_key(Table* table, int key);
 
 
-void table_add(Table* table, int key, char* info);
+void table_add(FILE* file, Table* table, int key, char* info);
 void table_read(Table* table);
 
 //Item* erase(Item* Head, Item* ptr);
 
 void table_delete_key(Table* table, int key);
-void f_add(FILE* file, int key, char* info);
+void f_add(FILE* file, int key, char* info, int index);
 void f_read(FILE* file, Table* table);
 void f_fill(FILE* file, Table* table);
-
+void table_add1(Table* table, int key, char* info);
 
 void table_clear(Table* table);
 
@@ -110,8 +110,8 @@ int main()
 			key = get_key();
 			printf("Type info: ");
 			info = readln();
-			table_add(table, key, info);
-			f_add(file, key, info);
+			table_add(file, table, key, info);
+			//f_add(file, key, info);
 
 			printf("\n");
 			break;
@@ -265,8 +265,7 @@ void table_read(Table* table)
 
 	}
 }
-
-void table_add(Table* table, int key, char* info)
+void table_add1( Table* table, int key, char* info)
 {
 	int index;
 	Item* cur_ptr;
@@ -277,6 +276,7 @@ void table_add(Table* table, int key, char* info)
 			cur_ptr->key = key;
 			cur_ptr->info = info;
 			cur_ptr->busy = 1;
+			
 			return;
 		}
 		else if (cur_ptr->key == key) {
@@ -284,9 +284,66 @@ void table_add(Table* table, int key, char* info)
 			return;
 		}
 	}
+
 	printf("TableOFF");
 }
+void table_add(FILE* file, Table* table, int key, char* info)
+{
+	int index;
+	Item* cur_ptr;
+	for (int i = 0; i < 11; i++) {
+		index = (h1(key) + i * h2(key)) % 11;
+		cur_ptr = &table->arr[index];
+		if (cur_ptr->busy == 0) {
+			cur_ptr->key = key;
+			cur_ptr->info = info;
+			cur_ptr->busy = 1;
+			f_add(file, key, info, index);
+			return;
+		}
+		else if (cur_ptr->key == key) {
+			printf("Invalid Key");
+			return;
+		}
+	}
+	
+	printf("TableOFF");
+}
+void f_add(FILE* file, int key, char* info, int index)
+{
+	fseek(file, 0, 0);
+	
 
+		
+		
+
+
+		long* f_arr = (long*)malloc(sizeof(long) * SIZE);
+		fread(f_arr, sizeof(long), SIZE, file);
+
+		f_Item* f_item;
+
+		fseek(file, 0, 2);
+		long cur_fpos = ftell(file);
+
+		//Заполнение item`а
+		f_item = (f_Item*)malloc(sizeof(f_Item));
+		f_item->key = key;
+		if (info != NULL)
+			f_item->info_size = strlen(info);
+		else {
+			info = "";
+			f_item->info_size = strlen(info);
+		}
+
+		fwrite(f_item, sizeof(f_Item), 1, file); //записываю Item в файл
+		fwrite(info, sizeof(char), f_item->info_size, file); //записываю строку в файл
+
+		f_arr[index] = cur_fpos;
+		fseek(file, 0, 0);
+		fwrite(f_arr, sizeof(long), SIZE, file); 
+	
+}
 
 
 Table* table_new(int size)
@@ -352,43 +409,7 @@ int h2(int key) {
 
 
 }
-void f_add(FILE* file, int key, char* info)
-{
-	fseek(file, 0, 0);
-	int index;
-	Item* cur_ptr;
-	for (int i = 0; i < 11; i++) {
-		index = (h1(key) + i * h2(key)) % 11;
 
-
-		long* f_arr = (long*)malloc(sizeof(long) * SIZE);
-		fread(f_arr, sizeof(long), SIZE, file);
-
-		f_Item* f_item;
-
-		fseek(file, 0, 2);
-		long cur_fpos = ftell(file);
-
-		//Заполнение item`а
-		f_item = (f_Item*)malloc(sizeof(f_Item));
-		f_item->key = key;
-		if(info!=NULL)
-		f_item->info_size = strlen(info);
-		else {
-			info = "";
-			f_item->info_size = strlen(info);
-		}
-		fwrite(f_item, sizeof(f_Item), 1, file); //записываю Item в файл
-		fwrite(info, sizeof(char), f_item->info_size, file); //записываю строку в файл
-		if (f_arr[index] == 0) {
-			fseek(file, index * sizeof(long), 0);
-			fwrite(&cur_fpos, sizeof(long), 1, file);
-			free(f_arr);
-			free(f_item);
-			return;
-		}
-	}	
-}
 void f_fill(FILE* file, Table* table)
 {
 	long f_arr[SIZE];
@@ -400,11 +421,11 @@ void f_fill(FILE* file, Table* table)
 	fwrite(f_arr, sizeof(long), SIZE, file);
 
 	Item* cur_ptr;
-	for (int i = 0; i < table->size; i++)
+	for (int i = 0; i < SIZE; i++)
 	{
 		cur_ptr = &table->arr[i];
 		if(cur_ptr->busy==1)
-		f_add(file, cur_ptr->key, cur_ptr->info);
+		f_add(file, cur_ptr->key, cur_ptr->info, i);
 		
 
 	}
@@ -412,19 +433,22 @@ void f_fill(FILE* file, Table* table)
 
 void f_read(FILE* file, Table* table)
 {
-	char* info = (char*)malloc(sizeof(char));
+	char* info;
 	f_Item* f_item = (f_Item*)malloc(sizeof(f_Item));
 
 	fseek(file, SIZE * sizeof(long), 0);
 
 	while (fread(f_item, sizeof(f_Item), 1, file) != 0)
 	{
+		printf("%d\n", ftell(file));
+		
 		info = (char*)malloc(sizeof(char) * (f_item->info_size + 1));
 		fread(info, sizeof(char), f_item->info_size, file);
 
 		info[f_item->info_size] = 0;
 
-		table_add(table, f_item->key, info);
+		table_add1(table, f_item->key, info);
+		
 	}
 
 }
