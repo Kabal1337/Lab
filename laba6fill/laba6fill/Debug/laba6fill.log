@@ -1,6 +1,3 @@
 ﻿  Source.c
-C:\Users\Борис\source\repos\laba6fill\laba6fill\Source.c(29,19): warning C4244:  функция: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\Борис\source\repos\laba6fill\laba6fill\Source.c(76,13): warning C4047:  =: "char" отличается по уровням косвенного обращения от "void *"
-C:\Users\Борис\source\repos\laba6fill\laba6fill\Source.c(86,22): warning C4013:  strlen: нет определения; предполагается "extern" с возвратом типа "int"
-C:\Users\Борис\source\repos\laba6fill\laba6fill\Source.c(88,10): warning C4013:  strcat: нет определения; предполагается "extern" с возвратом типа "int"
-  laba6fill.vcxproj -> C:\Users\Борис\source\repos\laba6fill\Debug\laba6fill.exe
+C:\Users\34110\Desktop\Labs\Lab\laba6fill\laba6fill\Source.c(59,31): warning C4013: strlen: нет определения; предполагается "extern" с возвратом типа "int"
+  laba6fill.vcxproj -> C:\Users\34110\Desktop\Labs\Lab\laba6fill\Debug\laba6fill.exe

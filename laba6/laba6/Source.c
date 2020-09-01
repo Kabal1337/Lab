@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <string.h >
+#include <string.h>
 #include <time.h>
 #define SIZE 10
 typedef struct Node
