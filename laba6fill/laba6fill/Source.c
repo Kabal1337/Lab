@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <time.h>
 #define SIZE 10
+
 typedef struct Node_f
 {
     int length;
@@ -15,7 +16,8 @@ typedef struct Node_f
 char* readln(void);
 int main()
 {
-
+   
+    srand(time(NULL));
     FILE* file_nodes;
     FILE* file_graf;
     file_nodes = fopen("C:/Users/34110/Desktop/Labs/Lab/laba6new/laba6new/nodes", "wb");

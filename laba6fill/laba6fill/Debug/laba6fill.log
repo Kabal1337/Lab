@@ -1,3 +1,4 @@
 ﻿  Source.c
-C:\Users\34110\Desktop\Labs\Lab\laba6fill\laba6fill\Source.c(59,31): warning C4013: strlen: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\34110\Desktop\Labs\Lab\laba6fill\laba6fill\Source.c(20,21): warning C4244: функция: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\34110\Desktop\Labs\Lab\laba6fill\laba6fill\Source.c(61,31): warning C4013: strlen: нет определения; предполагается "extern" с возвратом типа "int"
   laba6fill.vcxproj -> C:\Users\34110\Desktop\Labs\Lab\laba6fill\Debug\laba6fill.exe

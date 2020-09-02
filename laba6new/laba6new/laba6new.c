@@ -5,13 +5,20 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
+
 typedef struct Node_way
 {
     int length_way;
     char** prev_name;
 
 } Node_way;
+typedef struct Way
+{
+    Node_way* way1;
+    Node_way* way2;
+    Node_way* way3;
 
+} Way;
 typedef struct Node_f
 {
     int length;
@@ -42,7 +49,7 @@ typedef struct Link
 } Link;
 int infinity();
 //Служебные 
-void find_way(Node* graph, char* parent, char* child);
+void find_way(Node* graph, char* parent, char* child, Way* ways);
 char* readln();
 void read_node(Graph* graph);
 void check_links(Graph* graph, char* name);
@@ -70,6 +77,7 @@ char* f_readln(FILE* file);
 
 int main()
 {
+    int inf = infinity();
     Graph* graph = (Graph*)malloc(sizeof(Graph));
     graph->node = NULL;
     graph->size = 0;
@@ -170,8 +178,60 @@ int main()
 
             printf("Child name: ");
             child = readln();
-            find_way( graph, parent, child);
-            return 0;
+           // for (int i = 0; i < 1000; i++) {
+             //   find_way(graph, "0", "5");
+           // }
+            
+           
+            Way ways;
+            ways.way1=NULL;
+            ways.way2=NULL;
+            ways.way3=NULL;
+            for(int i=0; i<3; i++)
+            find_way(graph, parent, child, &ways);
+            printf("%d", ways.way1->length_way);
+            printf(" ");
+            if (ways.way1 != NULL) {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (strcmp(ways.way1->prev_name[i], "busy") == 0) break;
+                    //printf(" ");
+                    printf(ways.way1->prev_name[i]);
+
+                }
+            }
+                printf("\n");
+            if (ways.way2 != NULL) {
+                printf("%d", ways.way2->length_way);
+                printf(" ");
+            
+            
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (strcmp(ways.way2->prev_name[i], "busy") == 0) break;
+                    //printf(" ");
+                    printf(ways.way2->prev_name[i]);
+
+                }
+            }
+                printf("\n");
+            if (ways.way3 != NULL) {
+             printf("%d", ways.way3->length_way);
+                printf(" ");
+            
+            
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (strcmp(ways.way3->prev_name[i], "busy") == 0) break;
+                    //printf(" ");
+                    printf(ways.way3->prev_name[i]);
+                }
+
+                printf("\n");
+            }
             break;
         default:
             printf("There is no such command \n\n");
@@ -874,23 +934,26 @@ char* readln()
     return ptr;
 }
 
-void find_way(Graph* graph, char* parent, char* child)
+void find_way(Graph* graph, char* parent, char* child, Way* ways)
 {
     int inf = infinity();
     Link* link_ptr;
     Node_way* b= (Node_way*)malloc(graph->size * sizeof(Node_way));
-    b->prev_name= (char**)malloc(graph->size * sizeof(char*));
-    for (int i = 0; i < graph->size; i++) {
-        b->prev_name[i] = (char*)malloc(graph->size * sizeof(char));
-    }
-    for (int i = 0; i < graph->size; i++) {
-        b->prev_name[i] = "busy";
+   
+    for (int g = 0; g < graph->size; g++) {
+        b[g].prev_name = (char**)malloc(graph->size * sizeof(char*));
+        for (int i = 0; i < graph->size; i++) {
+            b[g].prev_name[i] = (char*)malloc(graph->size * sizeof(char));
+        }
+        for (int i = 0; i < graph->size; i++) {
+            b[g].prev_name[i] = "busy";
+        }
     }
     Node* node = graph->node;
     node_num(graph, parent);
     b[0].length_way=0;
     //b[0].prev_name = NULL;
-    Node_way* ways = (Node_way*)malloc(3 * sizeof(Node_way));
+    
     for (int i = 1; i < graph->size; i++)
     {
         b[i].length_way = inf;
@@ -898,6 +961,7 @@ void find_way(Graph* graph, char* parent, char* child)
 
     }
     // Node* node_next;
+    int o = 0;
     
     for (int i = 0; i < graph->size-1; i++) //итерации по Бельману-Форду
     {   
@@ -914,30 +978,40 @@ void find_way(Graph* graph, char* parent, char* child)
                 }
                 link_ptr = node->links;//указатель на прохождение связей данной вершины 
                 if (link_ptr != NULL)
-                if (b[j].length_way + link_ptr->weight < b[link_ptr->node->num].length_way) // выполняется, если прошлый размер пути меньше предыдущего 
-                {
+                 // выполняется, если прошлый размер пути меньше предыдущего 
+                
                     while (1) { //для каждой связи node выполняем
-                        b[link_ptr->node->num].length_way = b[j].length_way + link_ptr->weight;//складываем вес node и вес связи
-                        
-                        b[link_ptr->node->num].prev_name = b[j].prev_name;//прошлый путь удаляется и заменяется прошлым без последней пройденной вершины
-                        int k = 0;
-                        while (1)
-                        {
-                            if (b[link_ptr->node->num].prev_name[k] == "busy") break; //доходим до конца массива
-                            
-                            k++;
+                        if (b[j].length_way + link_ptr->weight < b[link_ptr->node->num].length_way) // выполняется, если прошлый размер пути меньше предыдущего 
+                        {   
+                            if (((ways->way1==NULL)||(ways->way1->length_way != b[j].length_way + link_ptr->weight)) && ((ways->way2 == NULL) || (ways->way2->length_way != b[j].length_way + link_ptr->weight)) && ((ways->way3 == NULL) || (ways->way3->length_way != b[j].length_way + link_ptr->weight))) {
+                                b[link_ptr->node->num].length_way = b[j].length_way + link_ptr->weight;//складываем вес node и вес связи
+
+                                for (int s = 0; s < graph->size; s++) {
+                                    //b[link_ptr->node->num].prev_name[s][0] = 0;
+                                    b[link_ptr->node->num].prev_name[s] = "busy";
+                                    b[link_ptr->node->num].prev_name[s] = b[j].prev_name[s];//прошлый путь удаляется и заменяется прошлым без последней пройденной вершины
+                                }
+                                int k = 0;
+                                while (1)
+                                {
+                                    if (strcmp(b[link_ptr->node->num].prev_name[k], "busy") == 0) break; //доходим до конца массива
+
+                                    k++;
+                                }
+                                b[link_ptr->node->num].prev_name[k] = node->name;//вписываем  последнюю пройденную вершину
+
+                                //if (link_ptr->next_link == NULL) break;// если связи кончились, останавливаемся.
+                                //link_ptr = link_ptr->next_link; //идем к следующей связи
+                            }
                         }
-                        b[link_ptr->node->num].prev_name[k] = node->name;//вписываем  последнюю пройденную вершину
-                        
-                        if (link_ptr->next_link == NULL) break;// если связи кончились, останавливаемся.
-                        link_ptr = link_ptr->next_link; //идем к следующей связи
+                        if (link_ptr->next_link == NULL) break;
+                        link_ptr = link_ptr->next_link;
                     }
-                    
-                }
+                
             }
         }
     }
-   
+    
     int num_child;
     node = graph->node;
     for (int i = 0; i < graph->size; i++) {
@@ -948,13 +1022,70 @@ void find_way(Graph* graph, char* parent, char* child)
         }
         node = node->next_ptr;
     }
-    printf("%d",b[num_child].length_way);
+    if (b[num_child].length_way == inf) {
+        printf("No way");
+        return;
+    }
+    /*printf("%d",b[num_child].length_way);
     printf(" ");
     for (int i = 0; i < graph->size; i++)
     {   
         if (b[num_child].prev_name[i] == "busy") break;
         printf(b[num_child].prev_name[i]);
     }
+    printf("\n");*/
+    while (1) {
+        if (ways->way1 == NULL) {
+            ways->way1 = &b[num_child];
+            break;
+        }
+        if (ways->way2 == NULL) {
+            ways->way2 = &b[num_child];
+            break;
+        }
+        if (ways->way3 == NULL) {
+            ways->way3 = &b[num_child];
+            break;
+        }
+    }
+    /* for (int g = 0; g < graph->size; g++) {
+        //b[g].prev_name = (char**)malloc(graph->size * sizeof(char*));
+        for (int i = 0; i < graph->size; i++) {
+            for (int s = 0; s < graph->size; s++) {
+                free(b[g].prev_name[i][s]);
+            }
+        }
+    }
+    for (int g = 0; g < graph->size; g++) {
+        //b[g].prev_name = (char**)malloc(graph->size * sizeof(char*));
+        for (int i = 0; i < graph->size; i++) {
+            free(b[g].prev_name[i]);
+
+        }
+    }
+    */
+   /* for (int i = 0; i < 3; i++)
+    {
+        printf("%d", ways[i].length_way);
+        
+        for (int g = 0; g < graph->size; g++) {
+            if (strcmp(ways[i].prev_name[g], "busy") == 0) break;
+            printf(" ");
+            printf(ways[i].prev_name[g]);
+        }
+        printf("\n");
+    }
+   */
+    //printf("\n");
+    //for (int g = 0; g < graph->size; g++) {
+        //b[g].prev_name = (char**)malloc(graph->size * sizeof(char*));
+       
+      //      free(b[g].prev_name);
+
+        
+    //}
+    //free(b);
+
 }
 
 
