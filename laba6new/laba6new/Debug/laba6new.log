@@ -1,14 +1,1 @@
-﻿  laba6new.c
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(191,27): warning C4133: функция: несовместимые типы - из "Graph *" в "Node *"
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(85,18): warning C4101: dir: неиспользованная локальная переменная
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(400,9): warning C4101: length: неиспользованная локальная переменная
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(748,18): warning C4033: "cycle_check" должен возвращать значение
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(807,49): warning C4244: =: преобразование "double" в "int", возможна потеря данных
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(839,45): warning C4028: формальный параметр 3 отличается от объявления
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(839,52): warning C4028: формальный параметр 4 отличается от объявления
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(889,16): warning C4047: =: "char" отличается по уровням косвенного обращения от "void *"
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(916,16): warning C4047: =: "char" отличается по уровням косвенного обращения от "void *"
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(937,22): warning C4028: формальный параметр 1 отличается от объявления
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(1093,1): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-C:\Users\34110\Desktop\Labs\Lab\laba6new\laba6new\laba6new.c(751): warning C4715: cycle_check: значение возвращается не при всех путях выполнения
-  laba6new.vcxproj -> C:\Users\34110\Desktop\Labs\Lab\laba6new\Debug\laba6new.exe
+﻿  laba6new.vcxproj -> C:\Users\34110\Desktop\Labs\Lab\laba6new\Debug\laba6new.exe

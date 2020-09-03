@@ -43,7 +43,7 @@ typedef struct Graph
 typedef struct Link
 {
     int weight;
-    int color;
+    
     struct Node* node;
     struct Link* next_link;
 } Link;
@@ -55,7 +55,7 @@ void read_node(Graph* graph);
 void check_links(Graph* graph, char* name);
 void list_del_link(Node* ptr, Link* link);
 void list_del_node(Graph* graph, Node* ptr);
-void make_all_white(Graph* graph);
+
 Node* find_node(Graph* graph, int index);
 int find_index(Graph* graph, Node* ptr);
 void node_num(Graph* graph, char* nodes);
@@ -65,10 +65,10 @@ void add_link(Graph* graph, char* parent, char* child);
 void del_node(Graph* graph, char* name);
 
 void fill_graphviz(Graph* graph);
-void tls_graphviz(Graph* graph, char** names);
 
-int cycle_check(Node* cur_ptr, Node* parent_ptr, Link* new_link);
-char** top_logic_sort(Graph* graph);
+
+
+
 
 //Файл
 void file_fill(Graph* graph);
@@ -92,7 +92,7 @@ int main()
     {
         command = -1;
 
-        printf("List of commands:\n1. Add Node \n2. Read All Nodes\n3. Make Link\n4. Check Link\n5. Delete Node\n6. Topological Sort\n8. Draw Graph\n9. Exit\n");
+        printf("List of commands:\n1. Add Node \n2. Read All Nodes\n3. Make Link\n4. Check Link\n5. Delete Node\n6. Find shortest way\n8. Draw Graph\n9. Exit\n");
         printf("Choice: ");
         scanf("%d", &command);
         getchar();
@@ -155,12 +155,9 @@ int main()
             file_fill(graph);
             printf("\n");
             break;
-        case 6:
-            names = top_logic_sort(graph);
+        
 
-            file_read(graph);
-
-            tls_graphviz(graph, names);
+            
 
             printf("\n");
             break;
@@ -172,7 +169,7 @@ int main()
             file_fill(graph);
             return 0;
             break;
-        case 10:
+        case 6:
             printf("Parent name: ");
             parent = readln();
 
@@ -189,9 +186,10 @@ int main()
             ways.way3=NULL;
             for(int i=0; i<3; i++)
             find_way(graph, parent, child, &ways);
-            printf("%d", ways.way1->length_way);
-            printf(" ");
             if (ways.way1 != NULL) {
+             printf("%d", ways.way1->length_way);
+               printf(" ");
+           
                 for (int i = 0; i < 3; i++)
                 {
 
@@ -560,71 +558,7 @@ void del_node(Graph* graph, char* name)
 
 }
 
-void tls_graphviz(Graph* graph, char** names)
-{
-    FILE* file;
-    file = fopen("cringe.txt", "w+t");
 
-    Node* cur_ptr = graph->node;
-    Link* link_ptr;
-
-    fprintf(file, "digraph G {\n");
-
-    fprintf(file, "{\n");
-    fprintf(file, "node [shape=plaintext,style=invisible];\n");
-    fprintf(file, "edge [color=white];\n");
-
-    fprintf(file, "-0");
-    for (int i = 1; i < graph->size; i++)
-    {
-        fprintf(file, "->");
-        fprintf(file, "-%d", i);
-    }
-    fprintf(file, ";\n");
-    fprintf(file, "}\n");
-
-    int it = graph->size - 1;
-    for (int i = 0; i < graph->size; i++)
-    {
-        fprintf(file, "{rank=same; -%d; %s;}\n", i, names[it]);
-        it--;
-    }
-
-    for (int i = 0; i < graph->size; i++)
-    {
-        free(names[i]);
-    }   free(names);
-
-    for (int i = 0; i < graph->size; i++)
-    {
-        link_ptr = cur_ptr->links;
-
-        if (link_ptr == NULL)
-        {
-            fprintf(file, cur_ptr->name);
-            fprintf(file, "\n");
-        }
-        else
-        {
-            while (link_ptr != NULL)
-            {
-                fprintf(file, cur_ptr->name);
-                fprintf(file, " -> ");
-                fprintf(file, link_ptr->node->name);
-
-                fprintf(file, "\n");
-
-                link_ptr = link_ptr->next_link;
-            }
-        }
-
-        cur_ptr = cur_ptr->next_ptr;
-    }
-
-    fprintf(file, "}\n");
-
-    fclose(file);
-}
 
 void fill_graphviz(Graph* graph)
 {
@@ -717,7 +651,7 @@ void make_all_white(Graph* graph)
 
         while (link_ptr != NULL)
         {
-            link_ptr->color = 0;
+            
             link_ptr = link_ptr->next_link;
         }
 
@@ -725,30 +659,7 @@ void make_all_white(Graph* graph)
     }
 }
 
-int cycle_check(Node* cur_ptr, Node* parent_ptr, Link* new_link)
-{
-    Link* link_ptr = cur_ptr->links;
 
-    while (link_ptr != NULL)
-    {
-        if (link_ptr->color == 1)
-        {
-            //printf("There is a cycle over there!\n");
-            list_del_link(parent_ptr, new_link);
-            return 1;
-        }
-        else
-        {
-            link_ptr->color = 1;
-
-            if (cycle_check(link_ptr->node, parent_ptr, new_link) != 1)
-            {
-                link_ptr = link_ptr->next_link;
-            }
-            else return;
-        }
-    }
-}
 
 void add_link(Graph* graph, char* parent, char* child)
 {
@@ -802,11 +713,10 @@ void add_link(Graph* graph, char* parent, char* child)
     int x = parent_ptr->x - child_ptr->x;
     int y = parent_ptr->y - child_ptr->y;
     link_ptr->next_link = NULL;
-    link_ptr->color = 0;
+    
     link_ptr->node = child_ptr;
     link_ptr->weight = sqrt(pow(x,2) + pow(y,2));
-    cycle_check(parent_ptr, parent_ptr, link_ptr);
-    make_all_white(graph);
+    
 }
 
 void read_node(Graph* graph)
